@@ -1,0 +1,52 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #00a9a9;
+  --gray: #333333;
+  --lightgray: #666666;
+  --lightgray2: #bababa;
+  --bg-gray: #f5f5f5;
+  --border-gray: #bababa;
+  --border-lightgray: #dbdbdb;
+  --omr-green: #cfffcf;
+  --omr-red: #f45757;
+  --omr-blue: #73abe2;
+  --omr-purple: #a489cc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  width: 100vw;
+  min-width: 1400px;
+}
+
+body {
+  color: var(--gray);
+  font-family: "Pretendard", sans-serif;
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.divide-x > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 0;
+  border-right-width: calc(1px * var(--tw-divide-x-reverse));
+  border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
+}
+
+/* 
+.divide-x > :nth-child(1) {
+  padding-left: 1px;
+} */

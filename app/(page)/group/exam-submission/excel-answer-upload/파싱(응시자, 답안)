@@ -1,0 +1,148 @@
+{
+  "group-MockExamTakersInfoAndAnswers": {
+    "groupCode": "a1234567",
+    "mockExamName": "The Premium 3월 모의고사",
+    "grade": "FRESHMAN",
+    "answerMethod": "INPUT_TEXT",
+    "mockExamTakers": [
+      {
+        "subject": "korean",
+        "userName": "김철수",
+        "class": "2",
+        "studentNumber": "4",
+        "phoneNumber": "01012345678",
+        "selectedSubjects": "1",
+        "answers": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "subject": "korean",
+        "userName": "이영희",
+        "class": "2",
+        "studentNumber": "4",
+        "phoneNumber": "01012345678",
+        "selectedSubjects": "1",
+        "answers": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "subject": "math",
+        "userName": "김철수",
+        "class": "2",
+        "studentNumber": "4",
+        "phoneNumber": "01012345678",
+        "selectedSubjects": "1",
+        "answers": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "subject": "math",
+        "userName": "이영희",
+        "class": "2",
+        "studentNumber": "4",
+        "phoneNumber": "01012345678",
+        "selectedSubjects": "1",
+        "answers": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "subject": "english",
+        "userName": "김철수",
+        "class": "2",
+        "studentNumber": "4",
+        "phoneNumber": "01012345678",
+        "selectedSubjects": "1",
+        "gender": "1",
+        "firstChoice": {
+          "universityCode": "U001",
+          "departmentCode": "D001"
+        },
+        "secondChoice": {
+          "universityCode": "U002",
+          "departmentCode": "D002"
+        },
+        "answers": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "subject": "english",
+        "userName": "이영희",
+        "class": "2",
+        "studentNumber": "4",
+        "phoneNumber": "01012345678",
+        "selectedSubjects": "1",
+        "gender": "1",
+        "firstChoice": {
+          "universityCode": "U001",
+          "departmentCode": "D001"
+        },
+        "secondChoice": {
+          "universityCode": "U002",
+          "departmentCode": "D002"
+        },
+        "answers": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "subject": "ko-history",
+        "userName": "김철수",
+        "class": "2",
+        "studentNumber": "4",
+        "phoneNumber": "01012345678",
+        "answers": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "subject": "ko-history",
+        "userName": "이영희",
+        "class": "2",
+        "studentNumber": "4",
+        "phoneNumber": "01012345678",
+        "answers": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "subject": "inquiry",
+        "userName": "김철수",
+        "class": "2",
+        "studentNumber": "4",
+        "phoneNumber": "01012345678",
+        "selectedSubjects1": "",
+        "selectedSubjects2": "",
+        "answers": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "subject": "inquiry",
+        "userName": "이영희",
+        "class": "2",
+        "studentNumber": "4",
+        "phoneNumber": "01012345678",
+        "selectedSubjects1": "",
+        "selectedSubjects2": "",
+        "answers": [
+          "1",
+          "2"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "mocktest-dsdo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "env-cmd -f .env.local next dev",
+    "serve-development": "env-cmd -f .env.development next dev",
+    "serve-production": "env-cmd -f .env.production next dev",
+    "build": "env-cmd -f .env.local next build",
+    "build-development": "env-cmd -f .env.development next build",
+    "build-production": "env-cmd -f .env.production next build",
+    "start-pm2": "pm2 start ecosystem.config.js --env local",
+    "start-pm2-development": "pm2 start ecosystem.config.js --env development",
+    "start-pm2-production": "pm2 start ecosystem.config.js --env production",
+    "build-serve-development": "env-cmd -f .env.development next build && env-cmd -f .env.development next start",
+    "deploy": "env-cmd -f .env.development next start",
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.64.1",
+    "@tanstack/react-query-devtools": "^5.64.2",
+    "axios": "^1.7.9",
+    "classnames": "^2.5.1",
+    "cookies-next": "^4.1.1",
+    "env-cmd": "^10.1.0",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
+    "next": "14.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.54.2",
+    "react-spinners": "^0.15.0",
+    "recoil": "^0.7.7",
+    "recoil-nexus": "^0.5.1",
+    "recoil-persist": "^5.1.0",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/file-saver": "^2.0.7",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.4",
+    "postcss": "^8.5.1",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "typescript": "^5"
+  }
+}
