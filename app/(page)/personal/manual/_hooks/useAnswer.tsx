@@ -213,10 +213,10 @@ export const useAnswer = ({
             [SUBMISSION_TYPE["science"]]: submission2,
           };
 
-          await fetchWrapper.put(
-            `/fo-user/mock-exam-attempt/update-submission-exam/${attemptId}`,
-            newSubmissionData,
-          );
+          // await fetchWrapper.put(
+          //   `/fo-user/mock-exam-attempt/update-submission-exam/${attemptId}`,
+          //   newSubmissionData,
+          // );
         } else {
           const submission = getValues("course");
           const submissionType =
@@ -226,6 +226,7 @@ export const useAnswer = ({
             [submissionType]: submission,
           };
           let newAnswers;
+
           const { url, method } = getUrlAndMethod(
             answerId,
             `/exam/answer/${SUBJECT_URL[subject]}`,
@@ -254,10 +255,10 @@ export const useAnswer = ({
             submission &&
             submission !== userInfo[submissionType as keyof TUserInfoType]
           ) {
-            await fetchWrapper.put(
-              `/fo-user/mock-exam-attempt/update-submission-exam/${attemptId}`,
-              newSubmissionData,
-            );
+            // await fetchWrapper.put(
+            //   `/fo-user/mock-exam-attempt/update-submission-exam/${attemptId}`,
+            //   newSubmissionData,
+            // );
           }
         }
 

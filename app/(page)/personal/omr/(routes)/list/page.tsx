@@ -1,16 +1,9 @@
 import { getUnicodeFromKorean } from "../../_components/Name/_utils/getUnicodeFromKorean";
 import { ALPHABET_INDEX, KOREAN } from "../../_components/Name/_utils/Alphabet";
 import Container from "./_components/Container";
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-  useQuery,
-} from "@tanstack/react-query";
+
 import { SUBJECT_EN } from "../../_utils/utils";
-import Container2 from "./_components/Container2";
 import { cookies } from "next/headers";
-import NotFound from "@/app/[...not_found]/page";
 
 const DUMMY_DATA = [
   "1_010104_070118_2_SIOAUFDIO   _3_2_1_4_4_2_5_ _2_4_1_3_3_2_2_5_1_3_2_4_1_2_3_4_5_5_4_3_2_1_1_3_5_2_4_4_2_1_4_4_2_3_5_1_2",
@@ -165,17 +158,17 @@ const page = async () => {
   // const dehydratedData = dehydrate(queryClient);
 
   const cookieStore = cookies();
-  const attemptId = cookieStore.get("attemptId");
-
-  if (!attemptId) {
-    return <NotFound />;
-  }
+  // const attemptId = cookieStore.get("attemptId");
+  const attemptId = { value: "1" };
+  // if (!attemptId) {
+  //   return <NotFound />;
+  // }
 
   const initData = await fetchData();
   return (
     // <HydrationBoundary state={dehydratedData}>
     // <Container initData={initData} />
-    <Container2 initData={initData} attemptId={attemptId.value} />
+    <Container initData={initData} attemptId={attemptId.value} />
     // </HydrationBoundary>
   );
 };

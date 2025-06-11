@@ -5,8 +5,8 @@ import { PopupComponent } from "@/components/Commons/PopupComponent";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export const metadata: Metadata = {
-  title: "대성 시험성적 입력 프로그램",
-  description: "대성 시험성적 입력 프로그램",
+  title: "시험성적 입력 프로그램",
+  description: "시험성적 입력 프로그램",
   icons: {
     icon: "/favicon.png",
   },

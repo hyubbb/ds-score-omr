@@ -131,23 +131,6 @@ const Container = ({ subjectIndex }: { subjectIndex: number }) => {
     const isGenderEmpty = !getValues("gender");
     const isCourseEmpty = !getValues("course");
 
-    //ald
-
-    // const isQuestionEmpty = getValues("answers")
-    //   .flat()
-    //   .some((item: any) => item === " ");
-
-    // if (isQuestionEmpty) {
-    //   openAlert({
-    //     content: "입력되지 않은 정답이 있습니다.",
-    //     canClose: true,
-    //     callBack: () => {
-    //       closeAlert();
-    //     },
-    //   });
-    //   return;
-    // }
-
     // 수험번호에 숫자가 없는경우 검증
     const isExamCodeEmpty = getValues("examCode").some(
       (item: any) => item === "",
@@ -155,9 +138,6 @@ const Container = ({ subjectIndex }: { subjectIndex: number }) => {
 
     // 생년월일에 숫자가 없는경우 검증
     const isBirthEmpty = getValues("birth").some((item: any) => item === "");
-
-    // 생년월일도 월 일 나눠서 0보다 큰지 검증해야됨, 년은 00일경우가 존재하기 때문에.
-    // 이것도 입력안된 부분만 신경쓰기로
 
     // 수동입력이 가능한 이름 검증
     if (isExamCodeEmpty || isBirthEmpty || isKoreanEmpty || isNameEmpty) {
@@ -273,17 +253,17 @@ const Container = ({ subjectIndex }: { subjectIndex: number }) => {
       <div className="flex justify-start gap-4">
         <Button
           type="button"
-          label="저장"
-          variant="primaryFill"
-          size="sm"
-          onClick={handleSave}
-        />
-        <Button
-          type="button"
           label="뒤로가기"
           variant="defaultBlack"
           size="sm"
           onClick={() => router.back()}
+        />
+        <Button
+          type="button"
+          label="저장"
+          variant="primaryFill"
+          size="sm"
+          onClick={handleSave}
         />
       </div>
     </div>

@@ -1,6 +1,4 @@
 "use client";
-import Button from "@/components/Commons/Form/Button/Button";
-import Input from "@/components/Commons/Form/Input/Input";
 import FormSelect from "@/components/Commons/Form/Select/Select";
 import PageTitle from "@/components/Manual/PageTitle";
 import React, { useEffect, useState } from "react";

@@ -4,7 +4,6 @@ import Button from "@/components/Commons/Form/Button/Button";
 import { useModal } from "@/libs/hooks/useModal";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Header } from "../(auth)/isbn/_components/Header";
 
 export default function NotFound() {
   const modal = useModal();
@@ -39,7 +38,6 @@ export default function NotFound() {
 
   return (
     <>
-      <Header />
       <div className="flex min-h-screen items-center justify-center">
         <div className="flex flex-col items-center justify-center"></div>
       </div>

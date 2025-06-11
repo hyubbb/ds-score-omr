@@ -28,7 +28,7 @@
       "@/icons/*": ["./icons/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.js", "app/(page)/personal/omr/(routes)/list/_components/.Container.tsx"],
   "exclude": ["node_modules"],
   "mode": "JIT"
 }

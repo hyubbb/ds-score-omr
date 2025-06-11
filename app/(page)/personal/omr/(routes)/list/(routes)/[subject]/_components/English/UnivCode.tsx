@@ -26,22 +26,17 @@ const UnivCode = ({
             </div>
             <div className="flex max-h-fit min-h-[46px] flex-col items-center justify-center gap-[2px] border-b text-center">
               <span className="text-sm">
-                {
-                  UNIV_CODE.find((item) => {
-                    const codePrefix =
-                      watch(fieldName).join("")?.slice(0, 3) || "";
-                    return item.code === codePrefix;
-                  })?.name
-                }
+                {UNIV_CODE.find((item) => {
+                  const codePrefix =
+                    watch(fieldName).join("")?.slice(0, 3) || "";
+                  return item.code === codePrefix;
+                })?.name || <span className="text-red-500">대학 재선택</span>}
               </span>
               <span className="text-sm">
-                {
-                  MAJOR_CODE.find((item) => {
-                    const codePrefix =
-                      watch(fieldName).join("")?.slice(3) || "";
-                    return item.code === codePrefix;
-                  })?.name
-                }
+                {MAJOR_CODE.find((item) => {
+                  const codePrefix = watch(fieldName).join("")?.slice(3) || "";
+                  return item.code === codePrefix;
+                })?.name || <span className="text-red-500">학과 재선택</span>}
               </span>
             </div>
             {/* 수험번호 체크 */}
