@@ -1,7 +1,7 @@
-import SubjectSection from "@/app/(page)/personal/omr/_components/Questions/_components/SubjectSection";
+import SubjectSection from "@/app/(page)/personal/omr/_components/Questions/SubjectSection";
 import React from "react";
-import QuestionHeader from "@/app/(page)/personal/omr/_components/Questions/_components/QuestionHeader";
-import QuestionGrid from "@/app/(page)/personal/omr/_components/Questions/_components/QuestionGrid";
+import QuestionHeader from "@/app/(page)/personal/omr/_components/Questions/QuestionHeader";
+import QuestionGrid from "@/app/(page)/personal/omr/_components/Questions/QuestionGrid";
 
 const HistoryComponent = () => {
   const COMMON_LENGTH = 20;

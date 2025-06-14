@@ -2,9 +2,9 @@ import React from "react";
 import NameGrid from "./NameGrid";
 import NameInput from "./NameInput";
 
-const Name = ({ color }: { color: string }) => {
+const Name = ({ color }: { color?: string }) => {
   return (
-    <section>
+    <section className="bg-white">
       <div className="flex w-[265px] flex-col gap-2">
         <div className={`rounded-md border-2 border-black shadow-md`}>
           <div className={``}>

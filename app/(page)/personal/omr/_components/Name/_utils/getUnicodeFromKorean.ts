@@ -11,9 +11,13 @@ export const getUnicodeFromKorean = (
   middleName: string,
   lastName: string,
 ) => {
-  const firstIndex = CHARCODE_FIRST_NAME.indexOf(firstName);
-  const middleIndex = CHARCODE_MIDDLE_NAME.indexOf(middleName);
-  let lastIndex = CHARCODE_LAST_NAME.indexOf(lastName);
+  if (!middleName) {
+    return "";
+  }
+
+  const firstIndex = CHARCODE_FIRST_NAME.indexOf(firstName) || 0;
+  const middleIndex = CHARCODE_MIDDLE_NAME.indexOf(middleName) || 0;
+  let lastIndex = CHARCODE_LAST_NAME.indexOf(lastName) || 0;
 
   // 받침이 없을수 있으니 받침이 없으면 0(공백)
   if (lastIndex === -1) {

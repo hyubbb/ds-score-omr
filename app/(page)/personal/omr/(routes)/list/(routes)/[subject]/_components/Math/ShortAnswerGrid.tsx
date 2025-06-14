@@ -1,4 +1,4 @@
-import SubjectSection from "@/app/(page)/personal/omr/_components/Questions/_components/SubjectSection";
+import SubjectSection from "@/app/(page)/personal/omr/_components/Questions/SubjectSection";
 import React from "react";
 import NumberGrid from "@/app/(page)/personal/omr/_components/OmrForm/NumberGrid";
 import { useFormContext } from "react-hook-form";

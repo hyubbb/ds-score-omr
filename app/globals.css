@@ -3,6 +3,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+}
+
 :root {
   --primary: #00a9a9;
   --gray: #333333;
@@ -26,7 +36,7 @@
 
 html {
   width: 100vw;
-  min-width: 1400px;
+  /* min-width: 1000px; */
 }
 
 body {

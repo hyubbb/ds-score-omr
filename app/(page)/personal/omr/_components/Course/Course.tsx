@@ -6,7 +6,6 @@ const Course = () => {
   const { watch, setValue } = useFormContext();
   const courseList =
     COURSE_LIST[watch("subjectEn") as keyof typeof COURSE_LIST];
-
   return (
     <section>
       <div className="w-[130px] rounded-md border-2 border-black bg-white shadow-md">

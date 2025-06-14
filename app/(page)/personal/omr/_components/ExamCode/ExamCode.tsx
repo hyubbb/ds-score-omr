@@ -10,8 +10,6 @@ const ExamCode = ({
   title?: string;
   fieldName?: string;
 }) => {
-  const { getValues, watch } = useFormContext();
-
   return (
     <section>
       <div className="flex w-32 flex-col gap-2">
@@ -27,7 +25,12 @@ const ExamCode = ({
                 <div className="col-span-4">번호</div>
               </div>
               <div className="grid grid-cols-6 divide-x border-2 border-[red]">
-                <OmrInput length={6} fieldName={fieldName} width="w-full" />
+                <OmrInput
+                  length={6}
+                  fieldName={fieldName}
+                  width="w-full"
+                  disabled={true}
+                />
               </div>
             </div>
             {/* 반  체크박스 */}
@@ -37,6 +40,7 @@ const ExamCode = ({
                   key={index}
                   currentIndex={index}
                   fieldName={fieldName}
+                  disabled={true}
                 />
               ))}
             </div>

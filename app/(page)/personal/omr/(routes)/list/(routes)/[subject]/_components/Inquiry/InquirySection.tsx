@@ -1,9 +1,9 @@
-import QuestionHeader from "@/app/(page)/personal/omr/_components/Questions/_components/QuestionHeader";
+import QuestionHeader from "@/app/(page)/personal/omr/_components/Questions/QuestionHeader";
 import React from "react";
 // import SubjectSection from "./SubjectSection";
 import NumberGrid from "./NumberGrid";
-import QuestionGrid from "@/app/(page)/personal/omr/_components/Questions/_components/QuestionGrid";
-import SubjectSection from "@/app/(page)/personal/omr/_components/Questions/_components/SubjectSection";
+import QuestionGrid from "@/app/(page)/personal/omr/_components/Questions/QuestionGrid";
+import SubjectSection from "@/app/(page)/personal/omr/_components/Questions/SubjectSection";
 import { useFormContext } from "react-hook-form";
 import {
   COURSE_LIST,

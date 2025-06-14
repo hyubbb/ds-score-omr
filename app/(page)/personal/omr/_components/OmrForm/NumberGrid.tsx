@@ -10,6 +10,7 @@ const NumberGrid = ({
   startNumber = 0,
   className,
   type,
+  disabled,
 }: {
   posIndex?: number;
   fieldName: string;
@@ -18,6 +19,7 @@ const NumberGrid = ({
   startNumber?: number;
   className?: string;
   type?: string;
+  disabled?: boolean;
 }) => {
   const { watch, setValue } = useFormContext();
   const [data, setData] = useState<string[]>([]);
@@ -74,11 +76,12 @@ const NumberGrid = ({
         <div key={i} className={`text-center`}>
           <button
             type="button"
+            disabled={disabled}
             className={`${NumberButtonStyle} ${
               +data?.[posIndex] == i
-                ? "border-none bg-black text-white"
+                ? "border-none bg-black text-white disabled:bg-gray-600"
                 : "border-[red] text-[red]"
-            }`}
+            } `}
             onClick={() => handleChange(i)}
             // value={watch(fieldName)?.[currentIndex]}
             value={data?.[posIndex] || 0}

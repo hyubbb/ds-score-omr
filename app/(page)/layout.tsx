@@ -5,15 +5,17 @@ import GlobalErrorHandler from "@/libs/providers/GlobalErrorHandler";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <div>
       <Header />
       <GlobalErrorHandler />
-      <div className="flex w-full justify-center">
-        <div className="flex min-h-[calc(100vh-300px)] w-[1400px] justify-center px-10">
-          {children}
+      <div className="scrollbar-none w-full overflow-x-auto">
+        <div className="mx-auto flex min-w-max justify-center">
+          <div className="mx-10 flex min-h-[calc(100vh-300px)] w-full justify-center">
+            {children}
+          </div>
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }

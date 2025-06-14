@@ -1,21 +1,14 @@
 import { useAlert } from "@/libs/hooks/useAlert";
 import { useRouter } from "next/navigation";
-import { useFormContext, UseFormReturn } from "react-hook-form";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { answerStatusState, subjectAnswerState } from "@/atoms/manual/atom";
-import { TAnswer, TMethods, TUserInfoType } from "@/types/personal/types";
-import ShowErrorModal from "@/components/ShowErrorModal";
-import { fetchWrapper } from "@/libs/utils/fetchWrapper";
-import { queryClient } from "@/libs/utils/query/queryClient";
-import { userInfoState, userManualDataState } from "@/atoms/user/atom";
-import {
-  SUBJECT_ID,
-  SUBJECT_URL,
-  SUBMISSION_TYPE,
-} from "@/libs/utils/subjectChange";
+import { UseFormReturn } from "react-hook-form";
+import { useRecoilState } from "recoil";
+import { omrListDataState } from "@/atoms/manual/atom";
+import { userInfoState } from "@/atoms/user/atom";
+import { SUBJECT_ID, SUBMISSION_TYPE } from "@/libs/utils/subjectChange";
 import { useEffect, useState } from "react";
 import postReplaceData from "@/libs/utils/manual/postReplaceData";
 import { COURSE_LIST_EN } from "../../omr/_utils/utils2";
+import { omrAnswerState } from "@/atoms/omr/atom";
 
 const getLabelByValue = (num: any) => {
   const newNum = Array.isArray(num) ? num.join("") : num;
@@ -33,19 +26,18 @@ export const useAnswer = ({
   answerId,
   type = "manual",
 }: {
-  methods: UseFormReturn<
-    TMethods & { answers1?: TAnswer[]; answers2?: TAnswer[] }
-  >;
+  methods: UseFormReturn<{ [key: string]: any; subjectCode: number }>;
   subject: string;
-  attemptId?: number;
+  attemptId?: string | undefined;
   answerId?: number;
   type?: "manual" | "omr";
 }) => {
   const { openAlert, closeAlert } = useAlert();
   const { getValues, setValue } = methods;
-  const userManualData = useRecoilValue(userManualDataState);
-  const userInfo = useRecoilValue(userInfoState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [isLoading, setIsLoading] = useState(true);
+  const [omrAnswerStatus, setOmrAnswerStatus] = useRecoilState(omrAnswerState);
+  const [omrListData, setOmrListData] = useRecoilState(omrListDataState);
   const router = useRouter();
 
   useEffect(() => {
@@ -144,8 +136,7 @@ export const useAnswer = ({
         : subject == "science"
           ? `answers2`
           : "answers";
-    const hasBlank = getValues(`${answerName}`)?.some((item) => !item);
-    console.log(hasBlank);
+    const hasBlank = getValues(`${answerName}`)?.some((item: any) => !item);
     const text = hasBlank
       ? "답안을 입력하지 않은 문항이 있습니다.\n 저장 하시겠습니까?"
       : "답안저장을 완료하시겠습니까?";
@@ -154,6 +145,7 @@ export const useAnswer = ({
       content: <div>{text}</div>,
       isCancel: true,
       callBack: async () => {
+        let newAnswers: any[] = [];
         if (subject == "inquiry") {
           if (getValues("course1") == getValues("course2")) {
             openAlert({
@@ -165,104 +157,67 @@ export const useAnswer = ({
             return;
           }
 
-          const { url: firstUrl, method: firstMethod } = getUrlAndMethod(
-            userManualData?.firstExAnswerId || undefined,
-            "/exam/answer/first-ex",
-          );
-          const { url: secondUrl, method: secondMethod } = getUrlAndMethod(
-            userManualData?.secondExAnswerId || undefined,
-            "/exam/answer/second-ex",
-          );
-
           // 값을 공백이랑 0을 치환하는 함수
           const newAnswers1 = postReplaceData({
-            data: getValues("answers1"),
+            data: getValues("answers")[0],
             grade: 3,
             subject: "society",
             type,
           });
 
           const newAnswers2 = postReplaceData({
-            data: getValues("answers2"),
+            data: getValues("answers")[1],
             grade: 3,
             subject: "science",
             type,
           });
 
-          await fetchWrapper[firstMethod](firstUrl, {
-            attemptId: attemptId,
-            answers: newAnswers1,
+          // 답안 입력 상태 업데이트
+          setOmrAnswerStatus({
+            ...omrAnswerStatus,
+            [SUBJECT_ID["society"]]: 1,
+            [SUBJECT_ID["science"]]: 1,
           });
 
-          await fetchWrapper[secondMethod](secondUrl, {
-            attemptId: attemptId,
-            answers: newAnswers2,
-          });
-
-          const submission1 =
-            type == "omr"
-              ? getLabelByValue(getValues("course1"))
-              : getValues("course1");
-          const submission2 =
-            type == "omr"
-              ? getLabelByValue(getValues("course2"))
-              : getValues("course2");
-
-          const newSubmissionData = {
-            [SUBMISSION_TYPE["society"]]: submission1,
-            [SUBMISSION_TYPE["science"]]: submission2,
-          };
+          // 정답 업데이트
+          newAnswers = [newAnswers1, newAnswers2];
 
           // await fetchWrapper.put(
           //   `/fo-user/mock-exam-attempt/update-submission-exam/${attemptId}`,
           //   newSubmissionData,
           // );
         } else {
-          const submission = getValues("course");
-          const submissionType =
-            SUBMISSION_TYPE[subject as keyof typeof SUBMISSION_TYPE];
-          const newSubmissionData = {
-            // ...userInfo,
-            [submissionType]: submission,
-          };
-          let newAnswers;
-
-          const { url, method } = getUrlAndMethod(
-            answerId,
-            `/exam/answer/${SUBJECT_URL[subject]}`,
-          );
-
-          console.log(getValues("answers"));
-
           // 값을 공백이랑 0을 치환하는 함수
-          newAnswers = postReplaceData({
-            data: getValues("answers"),
-            grade: 3,
-            subject,
+          newAnswers =
+            postReplaceData({
+              data: getValues("answers"),
+              grade: 3,
+              subject,
+            }) ?? [];
+
+          // 답안 입력 상태 업데이트
+          setOmrAnswerStatus({
+            ...omrAnswerStatus,
+            [SUBJECT_ID[subject]]: 1,
           });
-
-          // console.log(url, method, SUBJECT_URL[subject], newAnswers);
-
-          await fetchWrapper[method](url, {
-            attemptId: attemptId,
-            answers: newAnswers,
-          });
-
-          console.log(submission, getValues());
-
-          // 선택과목이 변경되었을 경우에만 선택과목 저장
-          if (
-            submission &&
-            submission !== userInfo[submissionType as keyof TUserInfoType]
-          ) {
-            // await fetchWrapper.put(
-            //   `/fo-user/mock-exam-attempt/update-submission-exam/${attemptId}`,
-            //   newSubmissionData,
-            // );
-          }
         }
 
+        // 선택과목 업데이트
+        setOmrListData(
+          omrListData.map((item: any) =>
+            item.subjectEn == subject ? getValues() : item,
+          ),
+        );
+
+        // 유저 정보에 선택과목 업데이트
+        setUserInfo({
+          ...userInfo,
+          [SUBMISSION_TYPE[subject as keyof typeof SUBMISSION_TYPE]]:
+            getValues("course"),
+        });
+
         closeAlert();
+
         if (type == "manual") {
           router.push("/personal/manual/");
         } else {

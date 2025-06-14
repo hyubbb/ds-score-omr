@@ -56,7 +56,7 @@ const Page = () => {
   return (
     <FormProvider {...methods}>
       <div className="flex w-full flex-col gap-4 overflow-y-auto">
-        <TitleText color="korean-color" bgColor="korean-bg-color">
+        <TitleText color="subject-korean-main" bgColor="subject-korean-bg">
           국어
         </TitleText>
         <form onSubmit={handleSubmit} className="flex flex-col gap-10">

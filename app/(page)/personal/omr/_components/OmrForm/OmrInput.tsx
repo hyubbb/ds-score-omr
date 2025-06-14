@@ -6,10 +6,12 @@ const OmrInput = ({
   length,
   fieldName,
   width,
+  disabled,
 }: {
   length: number;
   fieldName: string;
   width: string;
+  disabled?: boolean;
 }) => {
   const { register, watch, setValue } = useFormContext();
 
@@ -52,12 +54,13 @@ const OmrInput = ({
           <input
             key={index}
             type="text"
-            className={`h-8 ${width} text-center`}
+            className={`h-8 ${width} text-center disabled:bg-gray-200`}
             maxLength={1}
             {...register(`${fieldName}.${adjustedIndex}`)}
             onChange={(e) =>
               handleExamCodeChange(e.target.value, adjustedIndex)
             }
+            disabled={disabled}
           />
         );
       })}

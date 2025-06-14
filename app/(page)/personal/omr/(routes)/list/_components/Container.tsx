@@ -1,14 +1,8 @@
 "use client";
 
 import PageTitle from "@/components/Manual/PageTitle";
-import {
-  TData,
-  TOmrList,
-  TUserInfoType,
-  TUserManualData,
-} from "@/types/personal/types";
-import { DehydratedState, useQuery } from "@tanstack/react-query";
-import Link from "next/link";
+import { TData, TUserInfoType, TUserManualData } from "@/types/personal/types";
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import Button from "@/components/Commons/Form/Button/Button";
@@ -17,7 +11,6 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { omrListDataState } from "@/atoms/manual/atom";
 import Spinner from "@/components/Commons/Spinner/Spinner";
 import { IColumns } from "@/types/interface/common";
-// import ColTable from "@/components/Commons/Table/Coltable";
 import ColTable from "@/components/Manual/Coltable";
 import { fetchWithQuery } from "@/libs/utils/query/fetchWithQuery";
 import {
@@ -28,95 +21,38 @@ import {
 import {
   getManualSingleTableData,
   manualOMRColumns,
-  manualSingleColumns,
 } from "@/libs/utils/manual/tableData";
 import { useAnswerStatus } from "@/libs/hooks/manual/useAnswerStatus";
 import { getCookie } from "cookies-next";
 import { setRecoil } from "recoil-nexus";
 import { errorState } from "@/atoms/atom";
-import { fetchWrapper } from "@/libs/utils/fetchWrapper";
+import { omrAnswerState } from "@/atoms/omr/atom";
 import { useAlert } from "@/libs/hooks/useAlert";
 
-const Container2 = ({
-  initData,
-  attemptId,
-}: {
+// 컴포넌트 인터페이스 정의
+interface ContainerProps {
   initData: TData[];
   attemptId: string;
-}) => {
+}
+
+const Container = ({ initData, attemptId }: ContainerProps) => {
+  // Hooks 초기화
   const router = useRouter();
   const methods = useForm();
   const { openAlert, closeAlert } = useAlert();
+
+  // Recoil 상태 관리
   const [omrListState, setOmrListState] = useRecoilState(omrListDataState);
+  const [userAttemptId, setUserAttemptId] = useRecoilState(userAttemptIdState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const setUserManualData = useSetRecoilState(userManualDataState);
+  const [omrAnswerStatus, setOmrAnswerStatus] = useRecoilState(omrAnswerState);
+
+  // 로컬 상태 관리
   const [isLoading, setIsLoading] = useState(true);
   const [isAllStatusCheck, setIsAllStatusCheck] = useState(false);
 
-  const [userAttemptId, setUserAttemptId] = useRecoilState(userAttemptIdState);
-  const setUserInfo = useSetRecoilState(userInfoState);
-  const setUserManualData = useSetRecoilState(userManualDataState);
-
-  useEffect(() => {
-    if (initData) {
-      setOmrListState(initData);
-      setIsLoading(false);
-    }
-  }, [initData]);
-
-  const columns: IColumns[] = [
-    { header: "영역", name: ["subject"], width: "120", align: "center" },
-
-    {
-      header: "확인 현황",
-      name: ["status"],
-      width: "120",
-      align: "center",
-      editor: (status: string) => {
-        return checkedStatus(status);
-      },
-    },
-    {
-      header: "답안 입력 결과 확인 / 수정",
-      name: ["subjectEn"],
-      width: "120",
-      align: "center",
-      editor: (value: string) => {
-        return (
-          <Button
-            label={`OMR 확인`}
-            variant="primaryFill"
-            size="sm"
-            className="w-20"
-            onClick={() => {
-              router.push(`/personal/omr/list/${value}`);
-            }}
-          />
-        );
-      },
-    },
-  ];
-
-  const { checkedStatus, checkedUpdateStatus, checkedOMRUpdateStatus } =
-    useAnswerStatus();
-
-  const { data: queryStatusData, isLoading: queryStatusLoading } =
-    useQuery<TUserManualData>({
-      queryKey: ["personal", "manual"],
-      // queryFn: () => fetchWithQuery(`/exam/answer/ids/${attemptId}`),
-      queryFn: async () => {
-        return {
-          koAnswerId: 28,
-          mathAnswerId: 30,
-          enAnswerId: null,
-          koHistoryAnswerId: null,
-          firstExAnswerId: null,
-          secondExAnswerId: 1,
-        };
-      },
-      refetchOnMount: "always",
-      staleTime: 1000,
-      retry: 2,
-    });
-
+  // React Query 호출
   const { data: queryUserInfoData, isLoading: queryUserInfoLoading } =
     useQuery<TUserInfoType>({
       queryKey: ["personal", "info"],
@@ -141,57 +77,91 @@ const Container2 = ({
       retry: 2,
     });
 
+  // 유틸리티 함수
+  const { checkedStatus, checkedUpdateStatus, checkedOMRUpdateStatus } =
+    useAnswerStatus();
+
+  // 테이블 컬럼 정의
+  const columns: IColumns[] = useMemo(
+    () => [
+      { header: "영역", name: ["subject"], width: "120", align: "center" },
+      {
+        header: "확인 현황",
+        name: ["status"],
+        width: "120",
+        align: "center",
+        editor: (status: string) => checkedStatus(status),
+      },
+      {
+        header: "답안 입력 결과 확인 / 수정",
+        name: ["subjectEn"],
+        width: "120",
+        align: "center",
+        editor: (value: string) => (
+          <Button
+            label="OMR 확인"
+            variant="primaryFill"
+            size="sm"
+            className="w-20"
+            onClick={() => router.push(`/personal/omr/list/${value}`)}
+          />
+        ),
+      },
+    ],
+    [router, checkedStatus],
+  );
+
+  // 테이블 데이터 생성
   const colData = useMemo(
     () =>
       getManualSingleTableData(
-        queryStatusData,
+        omrAnswerStatus,
         subjectStatusData,
         checkedStatus,
         checkedOMRUpdateStatus,
       ),
-    [queryStatusData, subjectStatusData],
+    [omrAnswerStatus, subjectStatusData, checkedStatus, checkedOMRUpdateStatus],
   );
 
+  // 초기 데이터 로딩
   useEffect(() => {
-    if (queryUserInfoData) {
-      console.log(queryUserInfoData);
-      setUserInfo(queryUserInfoData);
+    if (!omrListState.length) {
+      setOmrListState(initData);
     }
-  }, [queryUserInfoData]);
+    setIsLoading(false);
+  }, [initData, omrListState.length, setOmrListState]);
 
+  // OMR 답안 상태 관리
   useEffect(() => {
-    if (queryStatusData) {
-      setUserAttemptId(+attemptId); // 임시로 지정
-      setUserManualData(queryStatusData);
+    if (omrAnswerStatus) {
+      setUserAttemptId(+attemptId);
+      setOmrAnswerStatus(omrAnswerStatus);
     }
-  }, [queryStatusData]);
+  }, [omrAnswerStatus, attemptId, setUserAttemptId, setOmrAnswerStatus]);
 
+  // 과목 상태 체크
   useEffect(() => {
-    if (queryStatusData && subjectStatusData) {
+    if (omrAnswerStatus && subjectStatusData) {
       const attemptedKeys = Object.keys(subjectStatusData).filter(
-        (key) => subjectStatusData[key] === "ATTEMPTED",
+        (key) => subjectStatusData[key as keyof TUserInfoType] === "ATTEMPTED",
       );
 
-      // 과목별 매칭 규칙 정의
-      const keyMapping: Record<string, string> = {
+      const keyMapping: Record<string, keyof TUserManualData> = {
         subFirstSubjectStatus: "firstExAnswerId",
         subSecondSubjectStatus: "secondExAnswerId",
       };
 
-      // attemptedKeys의 앞 두 자리 또는 지정된 키 매핑 기준으로 queryStatusData의 값 확인
       const hasNullValue = attemptedKeys.some((attemptedKey) => {
-        const mappedKey =
-          keyMapping[attemptedKey] || attemptedKey.slice(0, 2) + "AnswerId"; // 기본 매칭 로직 적용
-        return queryStatusData[mappedKey] === null;
+        const mappedKey = keyMapping[attemptedKey] as keyof TUserManualData;
+        return mappedKey && omrAnswerStatus[mappedKey] === null;
       });
 
       setIsAllStatusCheck(hasNullValue);
     }
-  }, [queryStatusData, subjectStatusData]);
+  }, [omrAnswerStatus, subjectStatusData]);
 
+  // 제출 핸들러
   const onSubmit = () => {
-    // 제출완료시
-    // 제출완료 api 연동 해야됨
     if (!getCookie("mockExamId") || !getCookie("memberNo")) {
       setRecoil(errorState, {
         isError: true,
@@ -206,11 +176,6 @@ const Container2 = ({
       canClose: true,
       isCancel: true,
       callBack: () => {
-        // fetchWrapper.post("/socket/send/answer", {
-        //   attemptId: userAttemptId,
-        //   mockExamId: getCookie("mockExamId"),
-        //   memberNo: getCookie("memberNo"),
-        // });
         closeAlert();
         router.push("/personal/manual/success");
       },
@@ -223,7 +188,7 @@ const Container2 = ({
 
   return (
     <FormProvider {...methods}>
-      <div className="flex w-[1000px] flex-col gap-8 overflow-x-auto">
+      <div className="flex w-full max-w-full flex-col gap-8">
         <PageTitle>OMR 업로드 현황</PageTitle>
         <div className="flex flex-col gap-4">
           <ColTable
@@ -247,4 +212,4 @@ const Container2 = ({
   );
 };
 
-export default Container2;
+export default Container;

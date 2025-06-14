@@ -1,8 +1,8 @@
-import SubjectSection from "@/app/(page)/personal/omr/_components/Questions/_components/SubjectSection";
+import SubjectSection from "@/app/(page)/personal/omr/_components/Questions/SubjectSection";
 import QuestionSection from "@/app/(page)/personal/omr/_components/Questions/QuestionSection";
 import React from "react";
 import QuestionGrid from "./QuestionGrid";
-import QuestionHeader from "@/app/(page)/personal/omr/_components/Questions/_components/QuestionHeader";
+import QuestionHeader from "@/app/(page)/personal/omr/_components/Questions/QuestionHeader";
 import ShortAnswerGrid from "./ShortAnswerGrid";
 
 const MathComponent = () => {

@@ -1,4 +1,6 @@
-import { userInfoState, userManualDataState } from "@/atoms/user/atom";
+"use client";
+
+import { omrAnswerState } from "@/atoms/omr/atom";
 import { fetchWrapper } from "@/libs/utils/fetchWrapper";
 import fetchReplaceData from "@/libs/utils/manual/fetchReplaceData";
 import { SUBJECT_ID, SUBJECT_URL } from "@/libs/utils/subjectChange";
@@ -22,7 +24,7 @@ const useFetchData = ({
 }: TProps) => {
   const urlSubject = SUBJECT_URL[subject];
 
-  const [userManualData, _] = useRecoilState(userManualDataState);
+  const [userManualData, _] = useRecoilState(omrAnswerState);
 
   const fetchData = async (userAttemptId: number) => {
     const res = await fetchWrapper.get(
@@ -76,7 +78,6 @@ const useFetchData = ({
       userAttemptId &&
       userManualData?.[SUBJECT_ID[subject] as keyof TUserManualData]
     ) {
-      console.log("fetchData");
       fetchData(userAttemptId);
     }
   }, [userAttemptId, userManualData, setValue, subject]);

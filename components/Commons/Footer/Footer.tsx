@@ -20,7 +20,7 @@ export const Footer = () => {
     <>
       <footer className="border-t-grayDB mt-[50px] flex h-[330px] w-full min-w-full items-center justify-center border-t-[1px] bg-[var(--gray)] py-[65px] text-[15px] leading-6 text-white text-opacity-80">
         <div className="flex min-w-[1400px] flex-row items-center justify-between text-sm">
-          <div className="flex h-[180px] flex-col gap-2 text-[#AAAAAA]">
+          {/* <div className="flex h-[180px] flex-col gap-2 text-[#AAAAAA]">
             <div className="mb-[20px]">
               <img
                 src={`/icons/footerLogo.svg`}
@@ -92,8 +92,8 @@ export const Footer = () => {
             </div>
             <div className="">
               <span>Copyright ⓒ 대성학력개발연구소, All rights reserved.</span>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
       </footer>
     </>

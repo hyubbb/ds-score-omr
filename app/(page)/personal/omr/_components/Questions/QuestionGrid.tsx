@@ -1,4 +1,4 @@
-import NumberGridRow from "../../OmrForm/NumberGridRow";
+import NumberGridRow from "../OmrForm/NumberGridRow";
 
 const QuestionGrid = ({
   startIndex = 0,

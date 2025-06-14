@@ -14,9 +14,15 @@ const NameGrid = ({
   // console.log("NameGrid", watch("name"), watch("koreanName"));
   // 반 숫자 변경 함수
   const handleChange = (structure: number, word: string) => {
-    // structure 자음 모음 받침
-    // 현재 누른값
     const newName = watch("name");
+
+    // newName 배열이 없거나 0, 1 인덱스가 없는 경우 함수 종료
+    if (!newName || !newName[0] || !newName[1]) {
+      return;
+    }
+
+    console.log(newName);
+
     newName[currentIndex][structure] = word;
 
     const unicode = getUnicodeFromKorean(
@@ -24,6 +30,9 @@ const NameGrid = ({
       newName[currentIndex][1],
       newName[currentIndex][2],
     );
+
+    console.log(unicode, newName);
+
     setValue(`koreanName.${currentIndex}`, unicode);
     setValue("name", newName);
   };

@@ -54,7 +54,7 @@ const Page = () => {
 
   return (
     <FormProvider {...methods}>
-      <div className="flex w-[1400px] flex-col gap-4 overflow-x-auto">
+      <div className="flex w-full flex-col gap-4">
         <TitleText color="english-color" bgColor="english-bg-color">
           영어
         </TitleText>

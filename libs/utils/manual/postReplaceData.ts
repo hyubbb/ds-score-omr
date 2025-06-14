@@ -14,20 +14,11 @@ const postReplaceData = ({
   type?: string;
 }) => {
   let newAnswers;
-  // const newAnswers = data.map((answer) => {
-  //   return answer.trim();
-  // });
 
   if (subject !== "math") {
     // 수학이아님면 객관식은 뒤에 공백2칸 추가, 값이 없을경우에는 공백3칸으로 처리한다.
-    console.log(subject, type, data[0]);
     if (type == "omr" && (subject == "society" || subject == "science")) {
-      //   const combineData = data.map((answer) => answer.join(""));
-      //   const processedData = combineData.map((answer) =>
-      //     !answer ? "   " : answer + "  ",
-      //   );
-      return data[0].map((answer: any) => (!answer ? "   " : answer + "  "));
-      //   return [...processedData[0], ...processedData[1]];
+      return data.map((answer: any) => (!answer ? "   " : answer + "  "));
     }
 
     return data.map((answer) => (!answer ? "   " : answer + "  "));

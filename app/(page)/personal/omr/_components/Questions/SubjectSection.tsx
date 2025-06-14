@@ -10,7 +10,7 @@ const SubjectSection = ({
   label?: string;
 }) => (
   <div
-    className={`flex max-h-fit flex-col rounded-lg border-2 border-black ${width}`}
+    className={`flex max-h-fit flex-col rounded-lg border-2 border-black ${width} bg-white`}
   >
     {title && (
       <div className="border-b py-2 text-center text-lg font-bold tracking-widest">

@@ -1,7 +1,7 @@
 import React from "react";
-import SubjectSection from "./_components/SubjectSection";
-import QuestionHeader from "./_components/QuestionHeader";
-import QuestionGrid from "./_components/QuestionGrid";
+import SubjectSection from "./SubjectSection";
+import QuestionHeader from "./QuestionHeader";
+import QuestionGrid from "./QuestionGrid";
 
 type QuestionSectionProps = {
   title?: string;
@@ -38,7 +38,7 @@ const QuestionSection = ({
 
   return (
     <section className="flex flex-col items-center">
-      <div className="flex w-fit gap-4">
+      <div className="flex w-fit gap-2">
         {!onlyOptional && (
           <SubjectSection title={title}>
             <QuestionHeader

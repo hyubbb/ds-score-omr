@@ -1,8 +1,8 @@
 import React from "react";
 import NumberGridRow from "../../../../../../_components/OmrForm/NumberGridRow";
-import SubjectSection from "../../../../../../_components/Questions/_components/SubjectSection";
-import QuestionHeader from "../../../../../../_components/Questions/_components/QuestionHeader";
-import QuestionGrid from "../../../../../../_components/Questions/_components/QuestionGrid";
+import SubjectSection from "../../../../../../_components/Questions/SubjectSection";
+import QuestionHeader from "../../../../../../_components/Questions/QuestionHeader";
+import QuestionGrid from "../../../../../../_components/Questions/QuestionGrid";
 
 const Questions = () => {
   const TOTAL_LENGTH = 45;
@@ -12,7 +12,7 @@ const Questions = () => {
   const OPTIONAL_START_INDEX = COMMON_LENGTH + DIVIDE_LENGTH;
 
   return (
-    <section className="flex flex-col items-center">
+    <section className="flex flex-col items-center bg-white">
       <div className="flex w-full gap-4">
         <SubjectSection title="공통과목">
           <QuestionHeader columns={2} />
