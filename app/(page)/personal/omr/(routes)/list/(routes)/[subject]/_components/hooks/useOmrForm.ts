@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useAlert } from "@/libs/hooks/useAlert";
-import { useAnswer } from "@/app/(page)/personal/manual/_hooks/useAnswer";
+import { useAnswer } from "@/app/(page)/personal/omr/(routes)/list/(routes)/[subject]/_components/hooks/useAnswer";
 import { TUserManualData } from "@/types/personal/types";
 import { SUBJECT_ID } from "@/libs/utils/subjectChange";
 import { validateOmrForm } from "../utils/validation";

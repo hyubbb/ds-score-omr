@@ -7,7 +7,7 @@ import { userInfoState } from "@/atoms/user/atom";
 import { SUBJECT_ID, SUBMISSION_TYPE } from "@/libs/utils/subjectChange";
 import { useEffect, useState } from "react";
 import postReplaceData from "@/libs/utils/manual/postReplaceData";
-import { COURSE_LIST_EN } from "../../omr/_utils/utils2";
+import { COURSE_LIST_EN } from "../../../../../../_utils/utils2";
 import { omrAnswerState } from "@/atoms/omr/atom";
 
 const getLabelByValue = (num: any) => {
