@@ -78,7 +78,7 @@ const useFetchData = ({
       userAttemptId &&
       userManualData?.[SUBJECT_ID[subject] as keyof TUserManualData]
     ) {
-      fetchData(userAttemptId);
+      // fetchData(userAttemptId);
     }
   }, [userAttemptId, userManualData, setValue, subject]);
 };

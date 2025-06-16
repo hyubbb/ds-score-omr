@@ -28,6 +28,7 @@ import { setRecoil } from "recoil-nexus";
 import { errorState } from "@/atoms/atom";
 import { omrAnswerState } from "@/atoms/omr/atom";
 import { useAlert } from "@/libs/hooks/useAlert";
+import { fetchSubjectStatusData } from "@/app/actions/exam";
 
 // 컴포넌트 인터페이스 정의
 interface ContainerProps {
@@ -52,30 +53,16 @@ const Container = ({ initData, attemptId }: ContainerProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isAllStatusCheck, setIsAllStatusCheck] = useState(false);
 
-  // React Query 호출
-  const { data: queryUserInfoData, isLoading: queryUserInfoLoading } =
-    useQuery<TUserInfoType>({
-      queryKey: ["personal", "info"],
-      queryFn: () =>
-        fetchWithQuery(
-          `/fo-user/mock-exam-attempt/submission-exam/${attemptId}`,
-        ),
-      refetchOnMount: "always",
-      staleTime: 1000,
-      retry: 2,
-    });
-
-  const { data: subjectStatusData, isLoading: subjectStatusLoading } =
-    useQuery<TUserInfoType>({
+  // 업로드 현황 데이터 조회
+  const { data: subjectStatusData, isLoading: subjectStatusLoading } = useQuery(
+    {
       queryKey: ["personal", "subjectStatus"],
-      queryFn: () =>
-        fetchWithQuery(
-          `/fo-user/mock-exam-attempt/attemptId/${attemptId}/status`,
-        ),
+      queryFn: () => fetchSubjectStatusData(),
       refetchOnMount: "always",
       staleTime: 1000,
       retry: 2,
-    });
+    },
+  );
 
   // 유틸리티 함수
   const { checkedStatus, checkedUpdateStatus, checkedOMRUpdateStatus } =
@@ -162,14 +149,14 @@ const Container = ({ initData, attemptId }: ContainerProps) => {
 
   // 제출 핸들러
   const onSubmit = () => {
-    if (!getCookie("mockExamId") || !getCookie("memberNo")) {
-      setRecoil(errorState, {
-        isError: true,
-        message: "시험 정보가 존재하지 않습니다.",
-        type: "home",
-      });
-      return;
-    }
+    // if (!getCookie("mockExamId") || !getCookie("memberNo")) {
+    //   setRecoil(errorState, {
+    //     isError: true,
+    //     message: "시험 정보가 존재하지 않습니다.",
+    //     type: "home",
+    //   });
+    //   return;
+    // }
 
     openAlert({
       content: "최종 제출한 답안은 수정이 불가합니다. 신중하게 제출해주세요.",
@@ -177,7 +164,7 @@ const Container = ({ initData, attemptId }: ContainerProps) => {
       isCancel: true,
       callBack: () => {
         closeAlert();
-        router.push("/personal/manual/success");
+        router.push("/personal/omr/success");
       },
     });
   };

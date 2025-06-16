@@ -1,7 +1,7 @@
 import React from "react";
 import { SUBJECT_KR } from "@/app/(page)/personal/omr/_utils/utils";
 import { SUBJECT_EN } from "@/app/(page)/personal/omr/_utils/utils2";
-import TitleText from "@/app/(page)/personal/omr/(routes)/list/(routes)/[subject]/_components/TitleText";
+import TitleText from "@/app/(page)/personal/omr/(routes)/list/_components/TitleText";
 
 interface OmrHeaderProps {
   subjectIndex: number;

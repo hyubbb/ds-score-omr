@@ -26,7 +26,10 @@ export function handleError({
   }
 
   if (status === 400) {
-    if (url === "/socket/receive/personal/record" || url === "/socket/cert-code/request-score") {
+    if (
+      url === "/socket/receive/personal/record" ||
+      url === "/socket/cert-code/request-score"
+    ) {
       return;
       message = "응시 이력 조회에 실패했습니다. \n 응시 코드를 확인해주세요.";
       errorType = "stay";
@@ -46,7 +49,10 @@ export function handleError({
     }
   } else if (status === 404) {
     console.log(url);
-    if (url === "/socket/receive/personal/record" || url === "/socket/cert-code/request-score") {
+    if (
+      url === "/socket/receive/personal/record" ||
+      url === "/socket/cert-code/request-score"
+    ) {
       message = "성적 제출에서 문제가 발생하였습니다.";
     } else {
       message = "데이터를 찾을 수 없습니다.";
@@ -61,7 +67,7 @@ export function handleError({
   }
 
   // 여기서 바로 errorState 업데이트
-  setRecoil(errorState, { isError: true, message, type: errorType });
+  setRecoil(errorState, { isError: true, message, type: errorType || null });
 
   return { isAlertNeeded: true, message, type: errorType };
 }

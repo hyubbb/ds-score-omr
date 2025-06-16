@@ -13,6 +13,8 @@ import OmrHeader from "./Omr/OmrHeader";
 import OmrContent from "./Omr/OmrContent";
 import OmrFooter from "./Omr/OmrFooter";
 import { useOmrForm } from "./hooks/useOmrForm";
+import { setRecoil } from "recoil-nexus";
+import { errorState } from "@/atoms/atom";
 
 const Container = ({ subjectIndex }: { subjectIndex: number }) => {
   const [omrDataState, setOmrDataState] = useRecoilState(omrListDataState);
@@ -79,6 +81,17 @@ const Container = ({ subjectIndex }: { subjectIndex: number }) => {
 
     handleSubmit(e);
   };
+
+  useEffect(() => {
+    if (!getValues("answers")?.length) {
+      console.log("데이터 없다");
+      setRecoil(errorState, {
+        isError: true,
+        message: "데이터가 없습니다. 다시 접속 해주세요.",
+        type: "home",
+      });
+    }
+  }, [getValues, setRecoil]);
 
   if (isLoading) return <Spinner />;
 
