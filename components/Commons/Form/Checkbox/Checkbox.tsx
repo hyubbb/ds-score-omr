@@ -1,5 +1,5 @@
 import { CommonItems, IUseForm } from "@/types/interface/common";
-import classNames from "classnames";
+import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { FieldValues, useController, useFormContext } from "react-hook-form";
 
@@ -106,7 +106,7 @@ const Checkboxes = ({
 
   return (
     <>
-      <div className={classNames(`w-full`, "flex flex-wrap gap-4")} id={name}>
+      <div className={clsx(`w-full`, "flex flex-wrap gap-4")} id={name}>
         {isAllCheckBox && (
           <div className="flex cursor-pointer items-center gap-2">
             <input
@@ -133,7 +133,7 @@ const Checkboxes = ({
         {items?.map(({ label, value }: CommonItems) => (
           <div
             key={value}
-            className={classNames(
+            className={clsx(
               "flex items-center gap-2",
               disabled ? "cursor-not-allowed" : "cursor-pointer",
             )}
@@ -148,13 +148,13 @@ const Checkboxes = ({
               checked={fileArray?.includes(value)}
               type="checkbox"
               value={value}
-              className={classNames(
+              className={clsx(
                 "hidden [&:checked+label]:bg-[url('/icons/icon_check-focus.svg')]",
                 disabled ? "cursor-not-allowed" : "cursor-pointer",
               )}
             />
             <label
-              className={classNames(
+              className={clsx(
                 "block h-[16px] min-w-[16px] bg-[url('/icons/icon_check-default.svg')]",
                 disabled
                   ? "cursor-not-allowed"
@@ -165,7 +165,7 @@ const Checkboxes = ({
             <label
               htmlFor={`${name}_${value}_${label}`}
               ref={field.ref}
-              className={classNames(
+              className={clsx(
                 "h-fit min-h-[16px] shrink-0 whitespace-pre-wrap leading-[22px]",
                 "text-[#050505]",
                 !disabled && "cursor-pointer",

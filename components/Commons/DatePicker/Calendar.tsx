@@ -3,10 +3,9 @@ import DatePicker from "react-datepicker";
 import { getMonth, getYear } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import "@/components/Commons/Style/DatePickerCustom.css";
-import classNames from "classnames";
-import { IUseForm } from "@/types/interface/common";
 import { FieldValues, useController, useFormContext } from "react-hook-form";
 import { ko } from "date-fns/locale";
+import clsx from "clsx";
 
 interface ICustomInput {
   value?: string;
@@ -75,7 +74,7 @@ export const Calendar = ({
     ({ value, onClick }: ICustomInput, ref: Ref<HTMLButtonElement>) => (
       <>
         <button
-          className={classNames(
+          className={clsx(
             isTime ? "w-[250px]" : "w-[160px]",
             "flex h-[40px] items-center justify-between rounded border-[1px] pr-[10px] text-sm after:pt-1 after:content-[url('/icons/icon_calendar.svg')]",
             !disabled &&
@@ -104,7 +103,7 @@ export const Calendar = ({
     ({ value, onClick }: ICustomInput, ref: Ref<HTMLButtonElement>) => (
       <>
         <button
-          className={classNames(
+          className={clsx(
             isTime ? "w-[250px]" : "w-[160px]",
             "flex h-[40px] items-center justify-between rounded border-[1px] pr-[10px] text-sm after:pt-1 after:content-[url('/icons/icon_calendar.svg')]",
             !disabled &&
@@ -188,7 +187,7 @@ export const Calendar = ({
           >
             {String(hour).padStart(2, "0")}
             <div
-              className={classNames(
+              className={clsx(
                 "flex-shrink-0",
                 "h-[14px] w-[14px] bg-[url('/icons/icon_arrow-down.svg')]",
                 !isHourOpen && "rotate-180 transform",
@@ -222,7 +221,7 @@ export const Calendar = ({
           >
             {String(minute).padStart(2, "0")}
             <div
-              className={classNames(
+              className={clsx(
                 "flex-shrink-0",
                 "h-[14px] w-[14px] bg-[url('/icons/icon_arrow-down.svg')]",
                 !isMinuteOpen && "rotate-180 transform",
@@ -255,7 +254,7 @@ export const Calendar = ({
           >
             {period}
             <div
-              className={classNames(
+              className={clsx(
                 "flex-shrink-0",
                 "h-[14px] w-[14px] bg-[url('/icons/icon_arrow-down.svg')]",
                 !isPeriodOpen && "rotate-180 transform",

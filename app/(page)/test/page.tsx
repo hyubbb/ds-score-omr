@@ -1,14 +1,11 @@
 "use client";
-import Button from "@/components/Commons/Form/Button/Button";
-import Input from "@/components/Commons/Form/Input/Input";
-import FormSelect from "@/components/Commons/Form/Select/Select";
 import PageTitle from "@/components/Manual/PageTitle";
 import React, { useState, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useAlert } from "@/libs/hooks/useAlert";
 import { useModal } from "@/libs/hooks/useModal";
 import { dummyOmrData, dummyUserData } from "./dummy";
-import ModalContainer from "./_components/modalContainer";
+import ModalContainer from "./_components/ModalContainer";
 
 const page = ({ params }: { params: { page: string } }) => {
   const currentPage = params.page as "personal" | "group";

@@ -4,8 +4,8 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "@/components/Style/BigCalendarCustom.css";
-import classNames from "classnames";
 import { useCallback } from "react";
+import clsx from "clsx";
 
 export type CalendarViewType = "month" | "day";
 
@@ -148,7 +148,7 @@ export const BigCalendar = ({
 
     return (
       <div
-        className={classNames(
+        className={clsx(
           "rbc-toolbar",
           btnNum === 1 && "one_btn",
           btnNum === 2 && "two_btn",
@@ -233,7 +233,7 @@ export const BigCalendar = ({
 
     return (
       <span
-        className={classNames(
+        className={clsx(
           label === "Sun" && "text-[#b93d3d]",
           label === "Sat" && "text-[#3e3ebb]",
         )}
@@ -253,7 +253,7 @@ export const BigCalendar = ({
 
     return (
       <div
-        className={classNames(
+        className={clsx(
           day === 0 && "sunday",
           day === 6 && "satday",
           "flex flex-row items-center justify-between p-2",

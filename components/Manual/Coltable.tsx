@@ -1,10 +1,10 @@
 import { IColumns } from "@/types/interface/common";
-import classNames from "classnames";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FieldValues, useFieldArray, useFormContext } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Spinner from "@/components/Commons/Spinner/Spinner";
+import clsx from "clsx";
 
 export interface IColTable {
   columns: IColumns[];
@@ -106,13 +106,10 @@ const ColTable = ({
 
   return (
     <div
-      className={classNames(
-        isScroll && "oveflow-y-auto max-h-[300px]",
-        className,
-      )}
+      className={clsx(isScroll && "oveflow-y-auto max-h-[300px]", className)}
     >
       <table
-        className={classNames(
+        className={clsx(
           "voca w-full table-auto",
           borderTopLine && "border-t-2 border-black",
         )}
@@ -140,7 +137,7 @@ const ColTable = ({
           })}
         </colgroup>
         <thead>
-          <tr className={classNames(isScroll && "sticky left-0 right-0 top-0")}>
+          <tr className={clsx(isScroll && "sticky left-0 right-0 top-0")}>
             {isCheckBox && (
               <th
                 className="bg-brand1/10 h-[40px] whitespace-nowrap px-0 pb-[12px] pt-[10px]"
@@ -154,11 +151,11 @@ const ColTable = ({
                     type="checkbox"
                     onChange={(e) => onChangeAll(e)}
                     checked={selectAllChecked}
-                    className="[&:checked+label]:bg-checkbox-focus hidden"
+                    className="hidden [&:checked+label]:bg-checkbox-focus"
                   />
                   <label
                     htmlFor={`tableCheckAll-${tableKey}`}
-                    className="bg-checkbox-default hover:bg-checkbox-hover block h-[16px] w-[16px]"
+                    className="block h-[16px] w-[16px] bg-checkbox-default hover:bg-checkbox-hover"
                   />
                 </div>
               </th>
@@ -178,7 +175,7 @@ const ColTable = ({
             {columns?.map((column, idx) => {
               return (
                 <th
-                  className={classNames(
+                  className={clsx(
                     headerBgColor || "bg-brand1/10", // 기본값을 설정하고, 프롭스가 있으면 해당 값 사용
                     "h-[40px] whitespace-pre-line px-0 pb-[12px] pt-[10px]",
                   )}
@@ -248,7 +245,7 @@ const ColTable = ({
                   return (
                     <tr
                       key={`table-tr-td-${index}`}
-                      className={classNames(
+                      className={clsx(
                         "hover:bg-brand2/20 border-grayD9 border-b bg-inherit first:border-t",
                         idList?.includes(item?.id) && "bg-brand2/20",
                         // isRowLink && " cursor-pointer"
@@ -296,11 +293,11 @@ const ColTable = ({
                               checked={idList?.includes(
                                 checkboxId ? item[checkboxId] : item?.id,
                               )}
-                              className={`[&:checked+label]:bg-checkbox-focus hidden`}
+                              className={`hidden [&:checked+label]:bg-checkbox-focus`}
                             />
                             <label
                               htmlFor={`tableCheckEach-${tableKey}-${index}`}
-                              className="bg-checkbox-defalt hover:bg-checkbox-hover block h-[16px] w-[16px]"
+                              className="bg-checkbox-defalt block h-[16px] w-[16px] hover:bg-checkbox-hover"
                             />
                           </div>
                         </td>
@@ -398,7 +395,7 @@ const ColTable = ({
                           return (
                             <td key={`table-td-editor-${idx}`}>
                               <span
-                                className={classNames(
+                                className={clsx(
                                   "flex w-full flex-row flex-wrap items-center justify-center gap-1 text-center",
                                   isRowLink && "cursor-pointer",
                                 )}

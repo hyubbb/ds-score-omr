@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import Image from "next/image";
 import { DetailedHTMLProps, ImgHTMLAttributes } from "react";
 
@@ -15,10 +15,7 @@ export interface IIcon {
 export const Icon = ({ title, style, onClick, size = 24 }: IIcon) => {
   return (
     <Image
-      className={classNames(
-        onClick && "cursor-pointer",
-        "h-auto aspect-square"
-      )}
+      className={clsx(onClick && "cursor-pointer", "aspect-square h-auto")}
       src={`/icons/icon_${title}.svg`}
       alt={`${title}아이콘`}
       style={style}

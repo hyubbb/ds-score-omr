@@ -2,11 +2,11 @@
 
 import Input from "@/components/Commons/Form/Input/Input";
 import { TSize } from "@/types/styletypes";
-import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { useController, useFormContext } from "react-hook-form";
 import { height, width } from "../../Style/Size";
 import Button from "../Button/Button";
+import clsx from "clsx";
 
 export const Search = ({
   name,
@@ -147,10 +147,7 @@ export const Search = ({
   return (
     <>
       <div
-        className={classNames(
-          "relative flex justify-between gap-4",
-          width[sizeW],
-        )}
+        className={clsx("relative flex justify-between gap-4", width[sizeW])}
         ref={selectDiv}
       >
         {/* <div className="flex flex-row items-center"> */}
@@ -216,7 +213,7 @@ export const Search = ({
           !disabled && (
             <ul
               ref={autoRef}
-              className={classNames(
+              className={clsx(
                 showOptions &&
                   "border-grayDB roundScrollable absolute left-0 top-[56px] z-[50] flex max-h-[200px] flex-col overflow-auto rounded border-b border-e border-s border-t shadow-2xl",
                 width[sizeW],
@@ -233,7 +230,7 @@ export const Search = ({
                           e.preventDefault();
                           targetSelect(idx);
                         }}
-                        className={classNames(
+                        className={clsx(
                           "cursor-pointer p-[10px] hover:bg-gray-300",
                           autoIndex === idx ? "bg-gray-300" : "bg-white",
                         )}
@@ -245,7 +242,7 @@ export const Search = ({
                 </>
               ) : (
                 <li
-                  className={classNames(
+                  className={clsx(
                     "flex items-center justify-center p-[10px]",
                     "bg-white text-center",
                   )}

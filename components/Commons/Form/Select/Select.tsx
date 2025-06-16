@@ -3,7 +3,7 @@
 import { bgcolor, height, width } from "@/components/Commons/Style/Size";
 import { CommonItems } from "@/types/interface/common";
 import { TSize } from "@/types/styletypes";
-import classNames from "classnames";
+import clsx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
 import { useController, useFormContext } from "react-hook-form";
 
@@ -59,14 +59,14 @@ const FormSelect = ({
 
   return (
     <div
-      className={classNames("relative flex flex-col", width[sizeW], className)}
+      className={clsx("relative flex flex-col", width[sizeW], className)}
       ref={selectDiv}
     >
       <button
         id={name}
         type="button"
         disabled={disabled}
-        className={classNames(
+        className={clsx(
           "text-gray70 w-full text-ellipsis rounded border px-[10px]",
           hasError && showOptions
             ? "border-black"
@@ -95,7 +95,7 @@ const FormSelect = ({
           </span>
 
           <div
-            className={classNames(
+            className={clsx(
               "flex-shrink-0",
               "m-1 flex h-4 w-4 transform items-center justify-center bg-no-repeat",
               showOptions && "rotate-180",
@@ -111,7 +111,7 @@ const FormSelect = ({
       </button>
       {showOptions && (
         <ul
-          className={classNames(
+          className={clsx(
             "border-gray50 scrollable absolute z-30 max-h-[250px] overflow-auto rounded-b-[4px] border-b border-e border-s [&>*:last-child]:rounded-b-[4px]",
             width[sizeW],
             showOptions && "border-t-white",
@@ -127,7 +127,7 @@ const FormSelect = ({
                   setShowOptions(false);
                   onSubmit && onSubmit(value);
                 }}
-                className={classNames(
+                className={clsx(
                   "cursor-pointer overflow-auto p-[10px] [&>*:last-child]:rounded-b-[4px]",
                   selectValue === value
                     ? "bg-[var(--primary)] text-white"

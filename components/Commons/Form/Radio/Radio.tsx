@@ -1,5 +1,5 @@
 import { CommonItems } from "@/types/interface/common";
-import classNames from "classnames";
+import clsx from "clsx";
 import { useFormContext } from "react-hook-form";
 
 export interface IFormRadio {
@@ -24,7 +24,7 @@ const Radio = ({ name, rules, items, disabled }: IFormRadio) => {
         {items?.map(({ label, value, disabled }: CommonItems) => (
           <div
             key={value}
-            className={classNames(
+            className={clsx(
               ContainerCommonConfig,
               !disabled && "cursor-pointer",
             )}
@@ -35,15 +35,12 @@ const Radio = ({ name, rules, items, disabled }: IFormRadio) => {
               value={value}
               disabled={disabled}
               {...register(name, rules)}
-              className={classNames(
-                HiddenInputConfig,
-                !disabled && "cursor-pointer",
-              )}
+              className={clsx(HiddenInputConfig, !disabled && "cursor-pointer")}
             />
 
             <label
               htmlFor={label}
-              className={classNames(
+              className={clsx(
                 SizeCommonConfig,
                 TriggerCommonConfig,
                 !disabled &&
@@ -52,7 +49,7 @@ const Radio = ({ name, rules, items, disabled }: IFormRadio) => {
             ></label>
             <label
               htmlFor={label}
-              className={classNames(!disabled && "cursor-pointer")}
+              className={clsx(!disabled && "cursor-pointer")}
             >
               {label}
             </label>
