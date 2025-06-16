@@ -2,8 +2,7 @@ import AlertIcon from "@/components/Commons/Icons/AlertIcon";
 import DeleteIcon from "@/components/Commons/Icons/DeleteIcon";
 import { bgcolor, height, width } from "@/components/Commons/Style/Size";
 import { TColor, TSize } from "@/types/styletypes";
-import classNames from "classnames";
-import { forwardRef, useImperativeHandle } from "react";
+import clsx from "clsx";
 import { useFormContext, useWatch } from "react-hook-form";
 
 export interface IFormInput {
@@ -79,14 +78,14 @@ const Input = ({
   };
 
   return (
-    <div className={classNames("flex flex-col gap-2", width[sizeW], className)}>
+    <div className={clsx("flex flex-col gap-2", width[sizeW], className)}>
       {label && (
         <div>
           <span>{label}</span>
         </div>
       )}
       <div
-        className={classNames(
+        className={clsx(
           "relative flex flex-col",
           width[sizeW],
           height[sizeH],
@@ -105,7 +104,7 @@ const Input = ({
           onKeyDown={onKeyDown}
           onKeyUp={onKeyUp}
           autoComplete={autoComplete ? "off" : "on"}
-          className={classNames(
+          className={clsx(
             CommonConfig,
             width[sizeW],
             height[sizeH],

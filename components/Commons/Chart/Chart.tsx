@@ -4,9 +4,9 @@ import {
   formatDateString,
   formatMonthString,
 } from "@/libs/utils/format/formatDate";
-import classNames from "classnames";
 import { addCommasToNumber } from "@/libs/utils/format/formatNumber";
 import Spinner from "../Spinner/Spinner";
+import clsx from "clsx";
 
 interface IchartStyle {
   title: string; // 이름
@@ -166,7 +166,7 @@ export const Chart = ({
               return (
                 <div
                   key={`totals_${total.title}`}
-                  className={classNames(
+                  className={clsx(
                     "border-grayDB flex flex-col justify-between gap-4 border bg-white p-8",
                     "min-h-[190px]",
                   )}
