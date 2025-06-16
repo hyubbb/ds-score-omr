@@ -2,8 +2,7 @@
 import PageTitle from "@/components/Manual/PageTitle";
 import Button from "@/components/Commons/Form/Button/Button";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
-import { deleteCookie } from "cookies-next";
+import React from "react";
 
 const page = () => {
   const router = useRouter();
