@@ -10,6 +10,7 @@ import Name from "@/app/(page)/personal/omr/_components/Name/Name";
 import ExamCode from "@/app/(page)/personal/omr/_components/ExamCode/ExamCode";
 import Birth from "@/app/(page)/personal/omr/_components/Birth/Birth";
 import { bgColorClasses, mainColorClasses } from "@/libs/utils/colorClasses";
+import clsx from "clsx";
 
 const SUBJECT_COMPONENTS = {
   korean: KoreanComponent,
@@ -39,7 +40,7 @@ const OmrContent: React.FC<OmrContentProps> = ({
 
   return (
     <div
-      className={`mx-4 flex gap-4 rounded-md border ${borderColor} ${bgColor} border-2 p-8`}
+      className={`mx-4 flex gap-2 rounded-md border ${borderColor} ${bgColor} border-2 p-8`}
     >
       <div className="flex flex-col gap-2">
         <div className="flex gap-2">
@@ -48,7 +49,7 @@ const OmrContent: React.FC<OmrContentProps> = ({
         </div>
         <Name />
       </div>
-      <div>
+      <div className={clsx(isCourseSection && "flex flex-col gap-2")}>
         {isCourseSection && <Course />}
         {/* {isGenderSection && <Gender />} */}
       </div>
