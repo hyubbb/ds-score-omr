@@ -303,7 +303,7 @@ type InitData = {
 
 const WordExamSingle = ({ initData }: { initData: any }) => {
   const [data, setData] = useState<InitData | null>(initData || null);
-  const [mode, setMode] = useRecoilState(downloadModeState);
+  const [mode, _] = useRecoilState(downloadModeState);
   let questionNumber = 1; // 문제 번호 시작
   const [questionLength, setQuestionLength] = useState<number>(0);
   const styles: React.CSSProperties = getStyles(data);
@@ -505,6 +505,7 @@ const WordExamSingle = ({ initData }: { initData: any }) => {
                     number={startNumber + index}
                     mode={mode.mode as "exam" | "answer"}
                     styles={styles}
+                    ㅈ
                     isType3={isType3}
                   />
                 ))}

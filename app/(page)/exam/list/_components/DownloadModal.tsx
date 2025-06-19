@@ -70,7 +70,7 @@ const DownloadModal = ({
                   onClick={() => handleWordDownload({ mode: "exam" })}
                 />
               </div>
-              {/* <div className="cursor-pointer overflow-hidden rounded-full">
+              <div className="cursor-pointer overflow-hidden rounded-full">
                 <Image
                   src="/icons/icon-hwp.png"
                   alt="download"
@@ -78,7 +78,7 @@ const DownloadModal = ({
                   height={50}
                   onClick={() => handleHwpDownload({ mode: "exam" })}
                 />
-              </div> */}
+              </div>
             </div>
           </section>
           <section className="mb-6 flex items-center justify-between gap-10 bg-[#f5f5f5] p-[30px]">
@@ -102,7 +102,7 @@ const DownloadModal = ({
                   onClick={() => handleWordDownload({ mode: "answer" })}
                 />
               </div>
-              {/* <div className="cursor-pointer overflow-hidden rounded-full">
+              <div className="cursor-pointer overflow-hidden rounded-full">
                 <Image
                   src="/icons/icon-hwp.png"
                   alt="download"
@@ -110,7 +110,7 @@ const DownloadModal = ({
                   height={50}
                   onClick={() => handleHwpDownload({ mode: "answer" })}
                 />
-              </div> */}
+              </div>
             </div>
           </section>
 

@@ -428,7 +428,7 @@ const ExamSingle = ({
   const styles = getStyles(data);
 
   return (
-    <div className="flex w-full flex-col gap-2 p-8 text-black">
+    <div className="flex w-full flex-col gap-2 bg-white p-8 text-black">
       <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <tbody>
           <tr>

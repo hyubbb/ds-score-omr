@@ -73,14 +73,6 @@ const Type1 = ({
   mode: "exam" | "answer";
   styles: React.CSSProperties;
 }) => {
-  const handler = (sentence: string, answer: string) => {
-    return sentence
-      .replace(
-        /_/,
-        `<span style="color: red; text-decoration: underline; display: inline-block; line-height: ${styles.lineHeight}; font-size: ${styles.fontSize};">${answer}</span><span style="white-space: pre;"> </span>`,
-      )
-      .replace(/_/g, "");
-  };
   return (
     <div>
       <table
@@ -169,20 +161,6 @@ const Type3 = ({
   styles: React.CSSProperties;
   isType3: boolean;
 }) => {
-  // const handler = (sentence: string, answer: string) => {
-  //   return `
-  //   <span style="line-height: ${styles.lineHeight}; font-size: ${styles.fontSize};">
-  //     ${sentence
-  //       .replace(
-  //         /(\S)_/,
-  //         (_, p1) =>
-  //           `<span style="color: red; text-decoration: underline; display: inline-block;">${answer}</span><span style="white-space: pre;"> </span>`,
-  //       )
-  //       .replace(/_/g, "")}
-  //   </span>
-  // `;
-  // };
-
   return (
     <div style={{ marginBottom: "12px" }}>
       <table
