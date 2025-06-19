@@ -33,6 +33,7 @@ export const Header = () => {
           {/* 네비게이션 */}
           <nav className="ml-6 flex items-center gap-10">
             <Link href="/personal/omr/list">OMR 답안 입력</Link>
+            <Link href="/exam/list">시험지 다운로드</Link>
           </nav>
         </div>
       </div>

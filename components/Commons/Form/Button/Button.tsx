@@ -58,7 +58,7 @@ const VariantConfig = {
   defaultOutline:
     "border-gray70 bg-white hover:shadow-black hover:shadow-[0_0_0_1px_rgba(0,0,0,0.1)] hover:font-bold",
   defaultBlack:
-    " bg-[var(--gray)] hover:shadow-black  hover:font-bold text-white",
+    " bg-[var(--gray)] hover:shadow-black hover:shadow-[0_0_0_1px_rgba(0,0,0,0.1)] hover:font-bold text-white",
   defaultGray:
     "border-[var(--border-gray2)] bg-[var(--bg-gray)] hover:shadow-black hover:shadow-[0_0_0_1px_rgba(0,0,0,0.1)] hover:font-bold text-black",
   defaultOutlineBold:

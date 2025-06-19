@@ -21,8 +21,6 @@ const NameGrid = ({
       return;
     }
 
-    console.log(newName);
-
     newName[currentIndex][structure] = word;
 
     const unicode = getUnicodeFromKorean(
@@ -30,8 +28,6 @@ const NameGrid = ({
       newName[currentIndex][1],
       newName[currentIndex][2],
     );
-
-    console.log(unicode, newName);
 
     setValue(`koreanName.${currentIndex}`, unicode);
     setValue("name", newName);

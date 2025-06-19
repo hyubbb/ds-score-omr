@@ -22,8 +22,8 @@ const MathComponent = () => {
   const OPTIONAL_START_INDEX = COMMON_ANSWER_LENGTH + DIVIDE_LENGTH;
 
   return (
-    <div className="flex flex-col gap-4">
-      <section className="flex gap-4">
+    <div className="flex flex-col gap-2">
+      <section className="flex gap-2">
         <QuestionSection
           totalLength={15}
           divideLength={8}
@@ -31,7 +31,7 @@ const MathComponent = () => {
           title="공통과목"
         />
 
-        <div className="flex max-w-fit gap-4">
+        <div className="flex max-w-fit gap-2">
           {/* <QuestionSection
             title="공통과목"
             startIndex={0}
@@ -45,8 +45,8 @@ const MathComponent = () => {
           ))}
         </div>
       </section>
-      <section className="flex gap-4">
-        <div className="flex max-w-fit gap-4">
+      <section className="flex gap-2">
+        <div className="flex max-w-fit gap-2">
           {Array.from({ length: 2 }, (_, index) => (
             <ShortAnswerGrid
               key={index}
@@ -62,7 +62,7 @@ const MathComponent = () => {
           onlyOptional={true}
           column={2}
         />
-        <div className="flex max-w-fit gap-4">
+        <div className="flex max-w-fit gap-2">
           {Array.from({ length: 2 }, (_, index) => (
             <ShortAnswerGrid key={index} initNum={28 + index} />
           ))}

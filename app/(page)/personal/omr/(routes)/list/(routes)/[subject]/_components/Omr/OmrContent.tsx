@@ -5,7 +5,6 @@ import HistoryComponent from "../History/HistoryComponent";
 import InquiryComponent from "../Inquiry/InquiryComponent";
 import EnglishComponent from "../English/EnglishComponent";
 import Course from "@/app/(page)/personal/omr/_components/Course/Course";
-import Gender from "@/app/(page)/personal/omr/_components/Gender/Gender";
 import Name from "@/app/(page)/personal/omr/_components/Name/Name";
 import ExamCode from "@/app/(page)/personal/omr/_components/ExamCode/ExamCode";
 import Birth from "@/app/(page)/personal/omr/_components/Birth/Birth";
@@ -40,7 +39,7 @@ const OmrContent: React.FC<OmrContentProps> = ({
 
   return (
     <div
-      className={`mx-4 flex gap-2 rounded-md border ${borderColor} ${bgColor} border-2 p-8`}
+      className={`mx-4 flex gap-2 rounded-md border ${borderColor} ${bgColor} border-2 p-6`}
     >
       <div className="flex flex-col gap-2">
         <div className="flex gap-2">
@@ -49,9 +48,8 @@ const OmrContent: React.FC<OmrContentProps> = ({
         </div>
         <Name />
       </div>
-      <div className={clsx(isCourseSection && "flex flex-col gap-2")}>
+      <div className={clsx(isCourseSection ? "flex flex-col gap-2" : "hidden")}>
         {isCourseSection && <Course />}
-        {/* {isGenderSection && <Gender />} */}
       </div>
       {renderComponent()}
     </div>
