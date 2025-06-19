@@ -2,9 +2,9 @@
 // import ExamDouble from "@/components/Downloads/ExamDouble";
 // import ExamSingle from "@/components/Downloads/pdf/PdfExamSingle";
 import React from "react";
-import ExamSingle from "../exam/list/_components/type/PdfExamSingle";
+import ExamSingle from "../exam/list/_components/typeByFile/PdfExamSingle";
 import { DownloadData } from "../exam/_utils/data";
-import WordExamSingle from "../exam/list/_components/type/WordExamSingle";
+import WordExamSingle from "../exam/list/_components/typeByFile/WordExamSingle";
 // 여백
 // blank: NARROWLY("좁게") | COMMONLY("보통") | WIDELY("넓게");
 

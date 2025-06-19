@@ -1,5 +1,3 @@
-import { DownloadData } from "../../app/(page)/exam/list/_utils/data";
-
 export const downloadWord = async (mode: "exam" | "answer") => {
   // 약간의 지연을 두어 DOM이 렌더링될 시간을 줌
   await new Promise((resolve) => setTimeout(resolve, 500));

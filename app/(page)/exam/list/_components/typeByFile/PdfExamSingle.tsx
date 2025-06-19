@@ -30,7 +30,7 @@ const getStyles = (data: any): React.CSSProperties => ({
 
 const BlankSpace = (num: number) => {
   return Array.from({ length: num }, (_, index) => (
-    <span key={index} className="inline-block w-[10px]">
+    <span key={index} className="inline w-[10px]">
       &nbsp;
     </span>
   ));
@@ -86,7 +86,7 @@ const Type1 = ({
                 dangerouslySetInnerHTML={{
                   __html: `<span style="
                     color: red; 
-                    display: inline-block; 
+                    display: inline; 
                     border-bottom: 1px solid black;
                     padding-bottom: 5px;
                   ">
@@ -97,7 +97,7 @@ const Type1 = ({
             ) : (
               <div
                 style={{
-                  display: "inline-block",
+                  display: "inline",
                   borderBottom: "1px solid black",
                 }}
               >
@@ -160,7 +160,7 @@ const Type2 = ({
                 dangerouslySetInnerHTML={{
                   __html: `<span style="
                     color: red; 
-                    display: inline-block; 
+                    display: inline; 
                     border-bottom: 1px solid black;
                     padding-bottom: 5px;
                   ">
@@ -171,7 +171,7 @@ const Type2 = ({
             ) : (
               <div
                 style={{
-                  display: "inline-block",
+                  display: "inline",
                   borderBottom: "1px solid black",
                 }}
               >
@@ -200,8 +200,8 @@ const Type3 = ({
 }) => {
   // const content = mode === "answer" ? question.content : question.answer;
   const firstAnswerRemover = (sentence: string, answer: string) => {
-    const lineHeight = styles.lineHeight ? +styles.lineHeight + 0.5 : "1.5";
-    const commonStyle = `color: red; display: inline-block; border-bottom: 1px solid black; padding-bottom: 5px; line-height:${lineHeight};`;
+    const lineHeight = styles.lineHeight ? +styles.lineHeight + 0.5 : "1";
+    const commonStyle = `color: red; display: inline; border-bottom: 1px solid black; padding-bottom: 5px; line-height:${lineHeight};`;
 
     return sentence
       .replace(/(\S)?_/, (match, p1) => {
@@ -233,8 +233,8 @@ const Type3 = ({
                 style={{
                   width: "30px",
                   lineHeight: styles?.lineHeight
-                    ? +styles?.lineHeight + 0.5
-                    : "1.5",
+                    ? +styles?.lineHeight + 0.3
+                    : "1",
                 }}
               >
                 <span>{number}.</span>
@@ -293,7 +293,7 @@ const Type4 = ({
     return sentence
       .replace(
         "_",
-        `<span style="color: red; display: inline-block; border-bottom: 1px solid black; padding-bottom: 5px; line-height:${styles.lineHeight ? +styles.lineHeight + 0.5 : "1.5"};">${answer}</span>`,
+        `<span style="color: red; display: inline; border-bottom: 1px solid black; padding-bottom: 5px; line-height:${styles.lineHeight ? +styles.lineHeight + 0.5 : "1.5"};">${answer}</span>`,
       )
       .replace(/_/g, "");
   };
@@ -320,8 +320,8 @@ const Type4 = ({
               style={{
                 width: "30px",
                 lineHeight: styles?.lineHeight
-                  ? +styles?.lineHeight + 0.5
-                  : "1.5",
+                  ? +styles?.lineHeight + 0.3
+                  : "1",
               }}
             >
               <span>{number}.</span>
@@ -361,10 +361,7 @@ const Type4 = ({
                     .split(", ")
                     .map((choice: string, index: number) => {
                       return (
-                        <div
-                          key={choice + index}
-                          className="inline-block w-[25%]"
-                        >
+                        <div key={choice + index} className="inline w-[25%]">
                           <span>{numberIcon[index]}&nbsp;</span>
 
                           <span>{choice}</span>

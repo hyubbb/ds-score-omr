@@ -5,7 +5,7 @@ export const convertToPdf = async (mode: "exam" | "answer") => {
     const html2pdf = (await import("html2pdf.js")).default;
 
     const option = {
-      margin: [0, 0, 0, 0], // 위, 왼쪽, 아래, 오른쪽
+      margin: [0, 0, 4, 0], // 위, 왼쪽, 아래, 오른쪽
       filename: `${mode === "exam" ? "시험지" : "정답지"}.pdf`,
       image: { type: "jpeg", quality: 21 },
       html2canvas: { scale: 2, dpi: 192, letterRendering: true },

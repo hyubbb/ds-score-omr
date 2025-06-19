@@ -1,8 +1,8 @@
 import React from "react";
-import ExamSingle from "./type/PdfExamSingle";
+import ExamSingle from "./typeByFile/PdfExamSingle";
 import { DownloadData } from "../../_utils/data";
-import WordExamSingle from "./type/WordExamSingle";
-import HwpExamSingle from "./type/HwpExamSingle";
+import WordExamSingle from "./typeByFile/WordExamSingle";
+import HwpExamSingle from "./typeByFile/HwpExamSingle";
 
 const DownContent = () => {
   return (
@@ -11,7 +11,7 @@ const DownContent = () => {
         <div id="pdf-content" className="w-full border">
           <ExamSingle initData={DownloadData} />
         </div>
-        <div id="my-word" className="hidden">
+        <div id="my-word" className="w-full border">
           <WordExamSingle initData={DownloadData} />
         </div>
         <div id="my-hwp" className="w-full border">

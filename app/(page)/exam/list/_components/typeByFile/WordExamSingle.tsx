@@ -42,7 +42,7 @@ const replaceFirstUnderlineWithHTML = (
   return sentence
     .replace(
       "_",
-      `<span style=\"color: red; text-decoration: underline; text-underline-color:black;  display: inline-block; line-height: 1;\">${answer}</span>`,
+      `<span style=\"color: red; text-decoration: underline; text-underline-color:black;  display: contents; line-height: 1;\">${answer}</span>`,
     )
     .replace(/_/g, "");
 };
@@ -109,7 +109,7 @@ const Type3 = ({
 }) => {
   const firstAnswerRemover = (sentence: string, answer: string) => {
     const lineHeight = styles.lineHeight ? +styles.lineHeight + 0.5 : "1.5";
-    const commonStyle = `color: red;text-decoration: underline; text-underline-color:black; display: inline-block;  line-height:${lineHeight};`;
+    const commonStyle = `color: red;text-decoration: underline; text-underline-color:black; display: contents;  line-height:${lineHeight};`;
 
     return sentence
       .replace(/(\S)?_/, (match, p1) => {
